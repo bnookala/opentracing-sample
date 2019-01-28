@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ot-deployment
+  namespace: jaeger
+  labels:
+    app: ot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ot
+  template:
+    metadata:
+      labels:
+        app: ot
+    spec:
+      containers:
+      - name: ot
+        image: bnookala/node-ot-test
+        ports:
+        - containerPort: 3000
