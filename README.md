@@ -26,7 +26,7 @@ kubectl apply -f deployment.yaml
 Run
 
 ```
-APP=`kubectl get po --selector=app=ot -o jsonpath='{.items[0].metadata.name}'` && kubectl port-forward $APP 3000:3000
+APP=`kubectl get po -n jaeger --selector=app=ot -o jsonpath='{.items[0].metadata.name}'` && kubectl port-forward $APP 3000:3000 -n jaeger
 ```
 
 In a seperate terminal in the same directory:
@@ -42,7 +42,7 @@ You can then stop the `port-forward` process from the first terminal window.
 Run
 
 ```
-QUERY=`kubectl get po --selector=app=jaeger,component=query -n jaeger -o jsonpath='{.items[0].metadata.name}'` && kubectl port-forward $QUERY 16686:16686
+QUERY=`kubectl get po -n jaeger --selector=app=jaeger,component=query -n jaeger -o jsonpath='{.items[0].metadata.name}'` && kubectl port-forward $QUERY 16686:16686 -n jaeger
 ```
 
 Then browse to http://localhost:16686, to interact with the dashboard. If set up properly, you should see traces from the "say-hello" service.
