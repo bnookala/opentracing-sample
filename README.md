@@ -26,7 +26,7 @@ kubectl apply -f deployment.yaml
 Run
 
 ```
-APP=kubectl get po --selector=app=ot -o jsonpath='{.items[0].metadata.name}' && kubectl port-forward $APP 3000:3000
+APP=`kubectl get po --selector=app=ot -o jsonpath='{.items[0].metadata.name}'` && kubectl port-forward $APP 3000:3000
 ```
 
 In a seperate terminal in the same directory:
